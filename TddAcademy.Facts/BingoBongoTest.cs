@@ -1,25 +1,21 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace TddAcademy.Facts
 {
 	public class BingoBongoTest
 	{
-		private readonly BingoBongoGame _bingoBongo;
-		private readonly List<string> _expectedList;
-		// todo: implement BingoBongo deriving from IBingoBongo test first
+		#region Fields
 
-		// todo: modulo 3 == 0 return "bingo"
-		// todo: modulo 5 == 0 returns "bongo"
-		// todo: modulo 3 && modulo 5 return "bingo bongo"
+		private readonly BingoBongoGame _bingoBongo;
+
+		#endregion
+
+		// todo: implement BingoBongo deriving from IBingoBongo test first
 
 		public BingoBongoTest()
 		{
 			_bingoBongo = new BingoBongoGame(120);
-
-			_expectedList = new List<string>();
-
 		}
 
 		[Fact]
@@ -34,6 +30,7 @@ namespace TddAcademy.Facts
 		[InlineData(1, "1")]
 		[InlineData(3, "Bingo")]
 		[InlineData(15, "BingoBongo")]
+		[InlineData(35, "BongoConga")]
 		[InlineData(37, "37")]
 		[InlineData(60, "BingoBongo")]
 		[InlineData(62, "62")]
