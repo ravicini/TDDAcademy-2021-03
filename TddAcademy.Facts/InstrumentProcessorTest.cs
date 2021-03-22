@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Xunit;
 
 namespace TddAcademy.Facts
@@ -13,28 +14,42 @@ namespace TddAcademy.Facts
 
         // todo: implement InstrumentProcessor test first
 
+		public const string c_task1 = "task1";
+
 		[Fact]
 		public void DispatcherGetTaskWasCalled()
 		{
-			var taskDispatcherFake = new TaskDispatcherFake();
+			var taskDispatcherFake = new TaskDispatcherFake(c_task1);
 			var instrumentFake = new InstrumentFake();
 			IInstrumentProcessor processor = new InstrumentProcessor(taskDispatcherFake, instrumentFake);
 
 			processor.Process();
 
-			taskDispatcherFake.GetTaskWasCalled.Should().BeTrue();
+			taskDispatcherFake.LastReturnedTask.Should().Be(c_task1);
 		}
 
 		[Fact]
 		public void InstrumentExecuteWasCalled()
 		{
-			var taskDispatcherFake = new TaskDispatcherFake();
+			var taskDispatcherFake = new TaskDispatcherFake(c_task1);
 			var instrumentFake = new InstrumentFake();
 			IInstrumentProcessor processor = new InstrumentProcessor(taskDispatcherFake, instrumentFake);
 
 			processor.Process();
 
-			instrumentFake.ExecuteWasCalled.Should().BeTrue();
+			instrumentFake.LastExecutedTask.Should().Be(c_task1);
+		}
+
+		[Fact]
+		public void InstrumentExecuteCalledWithNullThrowsArgumentNullException()
+		{
+			var taskDispatcherFake = new TaskDispatcherFake(null);
+			var instrumentFake = new InstrumentFake();
+			IInstrumentProcessor processor = new InstrumentProcessor(taskDispatcherFake, instrumentFake);
+
+			Action action = ()=> processor.Process();
+
+			action.Should().Throw<ArgumentNullException>();
 		}
 	}
 }
