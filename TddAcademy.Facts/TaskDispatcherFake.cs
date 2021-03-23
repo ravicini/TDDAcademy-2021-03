@@ -9,6 +9,12 @@
 
 		#endregion
 
+		#region Properties
+
+		public string LastFinishedTask { get; set; }
+
+		#endregion
+
 		public TaskDispatcherFake(string task)
 		{
 			_task = task;
@@ -24,7 +30,7 @@
 
 		public void FinishedTask(string task)
 		{
-			throw new System.NotImplementedException();
+			LastFinishedTask = task;
 		}
 
 		#endregion

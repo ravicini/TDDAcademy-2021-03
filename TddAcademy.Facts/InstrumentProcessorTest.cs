@@ -4,17 +4,20 @@ using Xunit;
 
 namespace TddAcademy.Facts
 {
-    public class InstrumentProcessorTest
-    {
+	public class InstrumentProcessorTest
+	{
+		#region Constants
+
 		// todo: TaskDispachterFake FinishedTask(string)
 
-        // todo: InstrumentFake Execute(string) => string ==null => ArgumentNullException
 		// todo: InstrumentFake Execute(string) => finished => Eventhandler Finished
 		// todo: InstrumentFake Execute(string) => error => Eventhandler Error
 
-        // todo: implement InstrumentProcessor test first
+		// todo: implement InstrumentProcessor test first
 
 		public const string c_task1 = "task1";
+
+		#endregion
 
 		[Fact]
 		public void DispatcherGetTaskWasCalled()
@@ -47,9 +50,21 @@ namespace TddAcademy.Facts
 			var instrumentFake = new InstrumentFake();
 			IInstrumentProcessor processor = new InstrumentProcessor(taskDispatcherFake, instrumentFake);
 
-			Action action = ()=> processor.Process();
+			Action action = () => processor.Process();
 
 			action.Should().Throw<ArgumentNullException>();
+		}
+
+		[Fact]
+		public void InstrumentFinishedWasCalled()
+		{
+			var taskDispatcherFake = new TaskDispatcherFake(c_task1);
+			var instrumentFake = new InstrumentFake();
+			IInstrumentProcessor processor = new InstrumentProcessor(taskDispatcherFake, instrumentFake);
+
+			processor.Process();
+
+			taskDispatcherFake.LastFinishedTask.Should().Be(c_task1);
 		}
 	}
 }

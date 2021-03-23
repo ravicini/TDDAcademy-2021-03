@@ -24,6 +24,11 @@ namespace TddAcademy.Facts
 			LastExecutedTask = task;
 			if(task == null)
 				throw new ArgumentNullException();
+			else
+			{
+				var args = new TaskEventArgs(task);
+				Finished?.Invoke(this, args);
+			}
 		}
 
 		#endregion
