@@ -1,4 +1,5 @@
 ﻿using System;
+using FakeItEasy;
 using FluentAssertions;
 using Xunit;
 
@@ -18,6 +19,21 @@ namespace TddAcademy.Facts
 		public const string c_task1 = "task1";
 
 		#endregion
+
+		#region Fields
+
+		private readonly IInstrument _instrumentFake;
+		private readonly ITaskDispatcher _taskDispatcherFake;
+		private readonly InstrumentProcessor _processor;
+
+		#endregion
+
+		public InstrumentProcessorTest()
+		{
+			_taskDispatcherFake = A.Fake<ITaskDispatcher>();
+			_instrumentFake = A.Fake<IInstrument>();
+			_processor = new InstrumentProcessor(_taskDispatcherFake, _instrumentFake);
+		}
 
 		[Fact]
 		public void DispatcherGetTaskWasCalled()
@@ -65,6 +81,45 @@ namespace TddAcademy.Facts
 			processor.Process();
 
 			taskDispatcherFake.LastFinishedTask.Should().Be(c_task1);
+		}
+
+		[Fact]
+		public void DispatcherGetTaskWasCalledFakeItEasy()
+		{
+			_processor.Process();
+
+			A.CallTo(() => _taskDispatcherFake.GetTask()).MustHaveHappened();
+		}
+
+		[Fact]
+		public void InstrumentExecuteWasCalledFakeItEasy()
+		{
+			A.CallTo(() => _taskDispatcherFake.GetTask()).Returns(c_task1);
+
+			_processor.Process();
+
+			A.CallTo(() => _instrumentFake.Execute(c_task1)).MustHaveHappened();
+		}
+
+		[Fact]
+		public void InstrumentExecuteCalledWithNullThrowsArgumentNullExceptionFakeItEasy()
+		{
+			A.CallTo(() => _taskDispatcherFake.GetTask()).Returns(null);
+			A.CallTo(() => _instrumentFake.Execute(null)).Throws<ArgumentNullException>();
+
+			Action action = () => _processor.Process();
+
+			action.Should().Throw<ArgumentNullException>();
+		}
+
+		[Fact]
+		public void InstrumentFinishedWasCalledFakeItEasy()
+		{
+			_instrumentFake.Finished += Raise.With(new TaskEventArgs(c_task1));
+
+			_processor.Process();
+
+			A.CallTo(() => _taskDispatcherFake.FinishedTask(c_task1)).MustHaveHappened();
 		}
 	}
 }
