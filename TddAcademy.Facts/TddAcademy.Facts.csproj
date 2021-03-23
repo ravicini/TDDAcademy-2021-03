@@ -7,6 +7,9 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.1" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TddAcademyCore\TddAcademy.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
