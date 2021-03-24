@@ -1,4 +1,6 @@
-﻿namespace TddAcademy
+﻿using System;
+
+namespace TddAcademy
 {
 	public class ScoreAnalyzer
 	{
@@ -17,6 +19,13 @@
 		{
 			if((scoreA < 4) && (scoreB < 4))
 				return _translator.GetSimpleResult(scoreA, scoreB);
+			if(((scoreA > 3) || (scoreB > 3)) && (Math.Abs(scoreA - scoreB) >= 2))
+			{
+				if(scoreA > scoreB)
+					return _translator.GetGame("A");
+				else
+					return _translator.GetGame("B");
+			}
 			else
 				return "";
 		}

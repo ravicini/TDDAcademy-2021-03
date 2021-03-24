@@ -3,7 +3,6 @@ using Xunit;
 
 namespace TddAcademy.Facts
 {
-	// todo: game
 	// todo: numbers > 3 -> advanced score
 	// todo: deuce
 	// todo: advantage
@@ -43,6 +42,18 @@ namespace TddAcademy.Facts
 			_ = _testee.GetScore(scoreA, scoreB);
 
 			A.CallTo(() => _scoreTranslatorFake.GetSimpleResult(scoreA, scoreB)).MustHaveHappened();
+		}
+
+		[Theory]
+		[InlineData(4, 0, "A")]
+		[InlineData(2, 4, "B")]
+		[InlineData(7, 5, "A")]
+		[InlineData(13, 15, "B")]
+		public void CallGame(int scoreA, int scoreB, string winner)
+		{
+			_ = _testee.GetScore(scoreA, scoreB);
+
+			A.CallTo(() => _scoreTranslatorFake.GetGame(winner)).MustHaveHappened();
 		}
 	}
 }
