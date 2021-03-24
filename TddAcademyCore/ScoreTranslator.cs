@@ -33,9 +33,8 @@ namespace TddAcademy
 			return $"{_simpleScores[scoreA]}:{_simpleScores[scoreB]}";
 		}
 
-		public string GetAdvantage(string player)
-		{
-			return $"advantage {player}";
-		}
+		public string GetAdvantage(string player) => $"advantage {player}";
+
+		public string GetGame(string player) => $"game {player}";
 	}
 }

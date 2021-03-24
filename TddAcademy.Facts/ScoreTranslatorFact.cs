@@ -3,9 +3,6 @@ using Xunit;
 
 namespace TddAcademy.Facts
 {
-	// todo: methode game (A/B)
-	// todo:
-
 	public class ScoreTranslatorFact
 	{
 		#region Fields
@@ -56,6 +53,16 @@ namespace TddAcademy.Facts
 		public void ReturnAdvantage(string player, string expectedScore)
 		{
 			var score = _testee.GetAdvantage(player);
+
+			score.Should().Be(expectedScore);
+		}
+
+		[Theory]
+		[InlineData("A", "game A")]
+		[InlineData("B", "game B")]
+		public void ReturnGame(string player, string expectedScore)
+		{
+			var score = _testee.GetGame(player);
 
 			score.Should().Be(expectedScore);
 		}
