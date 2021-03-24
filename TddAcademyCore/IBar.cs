@@ -4,12 +4,4 @@ namespace TddAcademy
     {
         string Say();
     }
-
-    public class Bar : IBar
-    {
-        public string Say()
-        {
-            return "bar";
-        }
-    }
 }
