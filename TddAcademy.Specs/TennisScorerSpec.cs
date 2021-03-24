@@ -1,13 +1,15 @@
-﻿using FakeItEasy;
+﻿using FluentAssertions;
+using Xbehave;
 
 namespace TddAcademy.Specs
 {
-	using FluentAssertions;
-	using Xbehave;
-
 	public class TennisScorerSpec
 	{
+		#region Fields
+
 		private Foo foo;
+
+		#endregion
 
 		[Background]
 		public void Background()
@@ -35,6 +37,24 @@ namespace TddAcademy.Specs
 
 			"When player A scores"
 				.x(() => scorer.ScorePlayerA());
+
+			"When player B scores"
+				.x(() => scorer.ScorePlayerB());
+
+			"Then the score is forty:thirty"
+				.x(() => scorer.Score.Should().Be("forty:thirty"));
+
+			"When player B scores"
+				.x(() => scorer.ScorePlayerB());
+
+			"Then deuce"
+				.x(() => scorer.Score.Should().Be("deuce"));
+
+			"When player A scores"
+				.x(() => scorer.ScorePlayerA());
+
+			"Then advance"
+				.x(() => scorer.Score.Should().Be("advance A"));
 
 			"When player A scores"
 				.x(() => scorer.ScorePlayerA());

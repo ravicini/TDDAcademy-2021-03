@@ -17,8 +17,6 @@ namespace TddAcademy
 
 		public string GetScore(int scoreA, int scoreB)
 		{
-			if((scoreA < 4) && (scoreB < 4))
-				return _translator.GetSimpleResult(scoreA, scoreB);
 			if(((scoreA > 3) || (scoreB > 3)) && (Math.Abs(scoreA - scoreB) >= 2))
 			{
 				if(scoreA > scoreB)
@@ -27,7 +25,7 @@ namespace TddAcademy
 					return _translator.GetGame("B");
 			}
 			else
-				return "";
+				return _translator.GetSimpleResult(scoreA, scoreB);
 		}
 	}
 }
