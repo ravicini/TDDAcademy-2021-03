@@ -2,7 +2,7 @@
 
 namespace TddAcademy
 {
-	public class ScoreTranslator
+	public class ScoreTranslator : IScoreTranslator
 	{
 		#region Constants
 
@@ -28,6 +28,8 @@ namespace TddAcademy
 
 		#endregion
 
+		#region Interface methods
+
 		public string GetSimpleResult(int scoreA, int scoreB)
 		{
 			return $"{_simpleScores[scoreA]}:{_simpleScores[scoreB]}";
@@ -36,5 +38,7 @@ namespace TddAcademy
 		public string GetAdvantage(string player) => $"advantage {player}";
 
 		public string GetGame(string player) => $"game {player}";
+
+		#endregion
 	}
 }

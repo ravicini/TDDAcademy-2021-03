@@ -2,16 +2,23 @@
 {
 	public class ScoreAnalyzer
 	{
-		private readonly ScoreTranslator _translator;
+		#region Fields
 
-		public ScoreAnalyzer(ScoreTranslator translator)
+		private readonly IScoreTranslator _translator;
+
+		#endregion
+
+		public ScoreAnalyzer(IScoreTranslator translator)
 		{
 			_translator = translator;
 		}
 
 		public string GetScore(int scoreA, int scoreB)
 		{
-			return "";
+			if((scoreA < 4) && (scoreB < 4))
+				return _translator.GetSimpleResult(scoreA, scoreB);
+			else
+				return "";
 		}
 	}
 }
