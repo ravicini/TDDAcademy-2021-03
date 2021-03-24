@@ -3,8 +3,6 @@ using Xunit;
 
 namespace TddAcademy.Facts
 {
-	// todo: methode deuce
-	// todo: methode advantage (A/B)
 	// todo: methode game (A/B)
 	// todo:
 
@@ -50,6 +48,16 @@ namespace TddAcademy.Facts
 			var deuce = "deuce";
 
 			_testee.Tie.Should().Be(deuce);
+		}
+
+		[Theory]
+		[InlineData("A", "advantage A")]
+		[InlineData("B", "advantage B")]
+		public void ReturnAdvantage(string player, string expectedScore)
+		{
+			var score = _testee.GetAdvantage(player);
+
+			score.Should().Be(expectedScore);
 		}
 	}
 }
