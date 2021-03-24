@@ -4,7 +4,6 @@ using Xunit;
 namespace TddAcademy.Facts
 {
 	// todo: numbers > 3 -> advanced score
-	// todo: deuce
 	// todo: advantage
 	public class ScoreAnalyzerFact
 	{
@@ -54,6 +53,18 @@ namespace TddAcademy.Facts
 			_ = _testee.GetScore(scoreA, scoreB);
 
 			A.CallTo(() => _scoreTranslatorFake.GetGame(winner)).MustHaveHappened();
+		}
+
+		[Theory]
+		[InlineData(4, 4)]
+		[InlineData(5, 5)]
+		[InlineData(8, 8)]
+		[InlineData(10, 10)]
+		public void CallTie(int scoreA, int scoreB)
+		{
+			_ = _testee.GetScore(scoreA, scoreB);
+
+			A.CallTo(() => _scoreTranslatorFake.GetTie()).MustHaveHappened();
 		}
 	}
 }

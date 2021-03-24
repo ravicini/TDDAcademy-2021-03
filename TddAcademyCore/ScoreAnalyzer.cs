@@ -24,6 +24,9 @@ namespace TddAcademy
 				else
 					return _translator.GetGame("B");
 			}
+			else if((scoreA >= 3) &&
+					(scoreA == scoreB))
+				return _translator.GetTie();
 			else
 				return _translator.GetSimpleResult(scoreA, scoreB);
 		}

@@ -42,9 +42,7 @@ namespace TddAcademy.Facts
 		[Fact]
 		public void ReturnTie()
 		{
-			var deuce = "deuce";
-
-			_testee.Tie.Should().Be(deuce);
+			_testee.GetTie().Should().Be("deuce");
 		}
 
 		[Theory]

@@ -13,5 +13,7 @@
 		string GetAdvantage(string player);
 
 		string GetGame(string player);
+
+		string GetTie();
 	}
 }

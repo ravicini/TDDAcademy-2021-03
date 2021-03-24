@@ -4,12 +4,6 @@ namespace TddAcademy
 {
 	public class ScoreTranslator : IScoreTranslator
 	{
-		#region Constants
-
-		private const string c_Tie = "deuce";
-
-		#endregion
-
 		#region Fields
 
 		private readonly Dictionary<int, string> _simpleScores = new()
@@ -24,7 +18,7 @@ namespace TddAcademy
 
 		#region Properties
 
-		public string Tie => c_Tie;
+		public string Tie { get; }
 
 		#endregion
 
@@ -33,6 +27,11 @@ namespace TddAcademy
 		public string GetSimpleResult(int scoreA, int scoreB)
 		{
 			return $"{_simpleScores[scoreA]}:{_simpleScores[scoreB]}";
+		}
+
+		public string GetTie()
+		{
+			return "deuce";
 		}
 
 		public string GetAdvantage(string player) => $"advantage {player}";
