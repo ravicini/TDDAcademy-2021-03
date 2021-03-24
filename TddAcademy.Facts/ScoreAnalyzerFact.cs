@@ -3,8 +3,6 @@ using Xunit;
 
 namespace TddAcademy.Facts
 {
-	// todo: numbers > 3 -> advanced score
-	// todo: advantage
 	public class ScoreAnalyzerFact
 	{
 		#region Fields
@@ -35,7 +33,6 @@ namespace TddAcademy.Facts
 		[InlineData(1, 3)]
 		[InlineData(3, 2)]
 		[InlineData(2, 3)]
-		[InlineData(3, 3)]
 		public void CallSimpleResult(int scoreA, int scoreB)
 		{
 			_ = _testee.GetScore(scoreA, scoreB);
@@ -65,6 +62,16 @@ namespace TddAcademy.Facts
 			_ = _testee.GetScore(scoreA, scoreB);
 
 			A.CallTo(() => _scoreTranslatorFake.GetTie()).MustHaveHappened();
+		}
+
+		[Theory]
+		[InlineData(5, 4, "A")]
+		[InlineData(7, 8, "B")]
+		public void CallAdvantage(int scoreA, int scoreB, string winner)
+		{
+			_ = _testee.GetScore(scoreA, scoreB);
+
+			A.CallTo(() => _scoreTranslatorFake.GetAdvantage(winner)).MustHaveHappened();
 		}
 	}
 }

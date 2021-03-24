@@ -54,7 +54,7 @@ namespace TddAcademy.Specs
 				.x(() => scorer.ScorePlayerA());
 
 			"Then advance"
-				.x(() => scorer.Score.Should().Be("advance A"));
+				.x(() => scorer.Score.Should().Be("advantage A"));
 
 			"When player A scores"
 				.x(() => scorer.ScorePlayerA());

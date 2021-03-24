@@ -27,6 +27,14 @@ namespace TddAcademy
 			else if((scoreA >= 3) &&
 					(scoreA == scoreB))
 				return _translator.GetTie();
+			else if((scoreA >= 3) && (scoreB >= 3) &&
+					(Math.Abs(scoreA - scoreB) == 1))
+			{
+				if(scoreA > scoreB)
+					return _translator.GetAdvantage("A");
+				else
+					return _translator.GetAdvantage("B");
+			}
 			else
 				return _translator.GetSimpleResult(scoreA, scoreB);
 		}

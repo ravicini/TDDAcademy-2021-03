@@ -31,7 +31,6 @@ namespace TddAcademy.Facts
 		[InlineData(1, 3, "fifteen:forty")]
 		[InlineData(3, 2, "forty:thirty")]
 		[InlineData(2, 3, "thirty:forty")]
-		[InlineData(3, 3, "forty:forty")]
 		public void ReturnSimpleResult(int scoreA, int scoreB, string expectedScore)
 		{
 			var score = _testee.GetSimpleResult(scoreA, scoreB);
