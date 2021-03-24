@@ -6,10 +6,21 @@ namespace TddAcademy.Facts
 	// todo: methode deuce
 	// todo: methode advantage (A/B)
 	// todo: methode game (A/B)
-	// todo: 
+	// todo:
 
 	public class ScoreTranslatorFact
 	{
+		#region Fields
+
+		private readonly ScoreTranslator _testee;
+
+		#endregion
+
+		public ScoreTranslatorFact()
+		{
+			_testee = new ScoreTranslator();
+		}
+
 		[Theory]
 		[InlineData(0, 0, "love:love")]
 		[InlineData(1, 0, "fifteen:love")]
@@ -28,11 +39,17 @@ namespace TddAcademy.Facts
 		[InlineData(3, 3, "forty:forty")]
 		public void ReturnSimpleResult(int scoreA, int scoreB, string expectedScore)
 		{
-			var testee = new ScoreTranslator();
-
-			var score = testee.GetSimpleResult(scoreA, scoreB);
+			var score = _testee.GetSimpleResult(scoreA, scoreB);
 
 			score.Should().Be(expectedScore);
+		}
+
+		[Fact]
+		public void ReturnTie()
+		{
+			var deuce = "deuce";
+
+			_testee.Tie.Should().Be(deuce);
 		}
 	}
 }

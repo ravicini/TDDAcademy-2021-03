@@ -4,6 +4,12 @@ namespace TddAcademy
 {
 	public class ScoreTranslator
 	{
+		#region Constants
+
+		private const string c_Tie = "deuce";
+
+		#endregion
+
 		#region Fields
 
 		private readonly Dictionary<int, string> _simpleScores = new()
@@ -13,6 +19,12 @@ namespace TddAcademy
 				{ 2, "thirty" },
 				{ 3, "forty" }
 			};
+
+		#endregion
+
+		#region Properties
+
+		public string Tie => c_Tie;
 
 		#endregion
 
