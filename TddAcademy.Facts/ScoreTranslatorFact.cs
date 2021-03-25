@@ -39,9 +39,9 @@ namespace TddAcademy.Facts
 		}
 
 		[Fact]
-		public void ReturnTie()
+		public void ReturnDeuce()
 		{
-			_testee.GetTie().Should().Be("deuce");
+			_testee.Deuce.Should().Be("deuce");
 		}
 
 		[Theory]

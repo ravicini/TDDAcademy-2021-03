@@ -18,7 +18,7 @@ namespace TddAcademy
 
 		#region Properties
 
-		public string Tie { get; }
+		public string Deuce => "deuce";
 
 		#endregion
 
@@ -27,11 +27,6 @@ namespace TddAcademy
 		public string GetSimpleResult(int scoreA, int scoreB)
 		{
 			return $"{_simpleScores[scoreA]}:{_simpleScores[scoreB]}";
-		}
-
-		public string GetTie()
-		{
-			return "deuce";
 		}
 
 		public string GetAdvantage(string player) => $"advantage {player}";

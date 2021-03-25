@@ -57,11 +57,11 @@ namespace TddAcademy.Facts
 		[InlineData(5, 5)]
 		[InlineData(8, 8)]
 		[InlineData(10, 10)]
-		public void CallTie(int scoreA, int scoreB)
+		public void CallDeuce(int scoreA, int scoreB)
 		{
 			_ = _testee.GetScore(scoreA, scoreB);
 
-			A.CallTo(() => _scoreTranslatorFake.GetTie()).MustHaveHappened();
+			A.CallTo(() => _scoreTranslatorFake.Deuce).MustHaveHappened();
 		}
 
 		[Theory]

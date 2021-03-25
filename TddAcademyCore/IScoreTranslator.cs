@@ -4,7 +4,7 @@
 	{
 		#region Properties
 
-		public string Tie { get; }
+		public string Deuce { get; }
 
 		#endregion
 
@@ -13,7 +13,5 @@
 		string GetAdvantage(string player);
 
 		string GetGame(string player);
-
-		string GetTie();
 	}
 }

@@ -44,8 +44,17 @@ namespace TddAcademy.Specs
 			"Then the score is forty:thirty"
 				.x(() => scorer.Score.Should().Be("forty:thirty"));
 
+			"When player A scores"
+				.x(() => scorer.ScorePlayerB());
+
 			"When player B scores"
 				.x(() => scorer.ScorePlayerB());
+
+			"Then advance"
+				.x(() => scorer.Score.Should().Be("advantage B"));
+
+			"When player A scores"
+				.x(() => scorer.ScorePlayerA());
 
 			"Then deuce"
 				.x(() => scorer.Score.Should().Be("deuce"));
